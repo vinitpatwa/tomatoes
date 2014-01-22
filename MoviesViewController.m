@@ -9,6 +9,8 @@
 #import "MoviesViewController.h"
 #import "MovieCell.h"
 #import "DetailViewController.h"
+#import "AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MoviesViewController ()
 
@@ -40,11 +42,13 @@
     return self;
 }
 
-- (void) reload{
+- (void) reload1{
     NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=j26mp33uc2p8ds9cdkfp64tg";
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSLog(@"JSON: %@", data);
         NSDictionary *object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSLog(@"data: %@", object);
         
         self.movies = [object objectForKey:@"movies"];
         
@@ -55,6 +59,37 @@
     
 }
 
+- (void)reload {
+    // 1
+    NSString *strUrl = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=j26mp33uc2p8ds9cdkfp64tg";
+//    NSURL *url = [NSURL URLWithString:strUrl];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:strUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+//        NSDictionary *object = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        
+        self.movies = [responseObject objectForKey:@"movies"];
+        
+        [self.tableView reloadData];
+        
+        
+        NSLog(@"JSON: %@", responseObject);
+        NSLog(@"#############");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Titles"
+                                                     message:[NSString stringWithFormat:@"No Internet Connection"]
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+    
+    }];
+    
+    
+}
 
 
 -(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -73,6 +108,23 @@
     cell.synopsisLabel.text = [movie objectForKey:@"synopsis"];
     cell.castLabel.text = @"My Movie Cast ";
     
+    NSDictionary *poster = [movie objectForKey:@"posters"];
+    
+    NSString *imageURL = [poster objectForKey:@"thumbnail"];
+   NSLog(@"thumbnail: %@", imageURL);
+
+//    [cell.poster setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:imageURL]]
+//                                      success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+//                                       weakCell.imageView.image = image;
+//                                       
+//                                       //only required if no placeholder is set to force the imageview on the cell to be laid out to house the new image.
+//                                       //if(weakCell.imageView.frame.size.height==0 || weakCell.imageView.frame.size.width==0 ){
+//                                       [weakCell setNeedsLayout];
+//                                       //}
+//                                   }
+//                                   failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+//                                       
+//                                   }];
     
     return cell;
 }

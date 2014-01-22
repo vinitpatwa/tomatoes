@@ -66,6 +66,7 @@
                                 <connections>
                                     <outlet property="castLabel" destination="XCZ-zC-zon" id="lmJ-uI-aXh"/>
                                     <outlet property="moviesTitleLabel" destination="l4C-gs-x1h" id="6nk-Tk-ryW"/>
+                                    <outlet property="poster" destination="7ke-Ec-Ly1" id="3V5-h6-IWm"/>
                                     <outlet property="synopsisLabel" destination="0Rr-Xw-XgG" id="Cta-pk-UGl"/>
                                     <segue destination="YxX-B9-23m" kind="push" identifier="DetailViewControllerSegue" id="E4A-l1-0ph"/>
                                 </connections>
