@@ -22,6 +22,7 @@
 		1C62462F188797D600A5CA90 /* tomatoesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C62462E188797D600A5CA90 /* tomatoesTests.m */; };
 		1C62463A188DEF9200A5CA90 /* MoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C624639188DEF9200A5CA90 /* MoviesViewController.m */; };
 		1C62463D188EF05D00A5CA90 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C62463C188EF05D00A5CA90 /* MovieCell.m */; };
+		1C624640188F0DF600A5CA90 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C62463F188F0DF600A5CA90 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		1C624639188DEF9200A5CA90 /* MoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoviesViewController.m; path = ../MoviesViewController.m; sourceTree = "<group>"; };
 		1C62463B188EF05D00A5CA90 /* MovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieCell.h; path = ../MovieCell.h; sourceTree = "<group>"; };
 		1C62463C188EF05D00A5CA90 /* MovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieCell.m; path = ../MovieCell.m; sourceTree = "<group>"; };
+		1C62463E188F0DF600A5CA90 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		1C62463F188F0DF600A5CA90 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,8 @@
 		1C624609188797D600A5CA90 /* tomatoes */ = {
 			isa = PBXGroup;
 			children = (
+				1C62463E188F0DF600A5CA90 /* DetailViewController.h */,
+				1C62463F188F0DF600A5CA90 /* DetailViewController.m */,
 				1C62463B188EF05D00A5CA90 /* MovieCell.h */,
 				1C62463C188EF05D00A5CA90 /* MovieCell.m */,
 				1C624638188DEF9200A5CA90 /* MoviesViewController.h */,
@@ -255,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C624614188797D600A5CA90 /* AppDelegate.m in Sources */,
+				1C624640188F0DF600A5CA90 /* DetailViewController.m in Sources */,
 				1C624610188797D600A5CA90 /* main.m in Sources */,
 				1C62463D188EF05D00A5CA90 /* MovieCell.m in Sources */,
 				1C62463A188DEF9200A5CA90 /* MoviesViewController.m in Sources */,

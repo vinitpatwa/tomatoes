@@ -31,15 +31,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MovieCell" rowHeight="161" id="8eJ-qz-5Y8" customClass="MovieCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MovieCell" rowHeight="161" id="8eJ-qz-5Y8" customClass="MovieCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="161"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8eJ-qz-5Y8" id="y97-h8-Zac">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="160"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ke-Ec-Ly1">
-                                            <rect key="frame" x="20" y="0.0" width="107" height="140"/>
+                                            <rect key="frame" x="20" y="0.0" width="74" height="140"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Percy Jackson" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4C-gs-x1h">
@@ -67,6 +67,7 @@
                                     <outlet property="castLabel" destination="XCZ-zC-zon" id="lmJ-uI-aXh"/>
                                     <outlet property="moviesTitleLabel" destination="l4C-gs-x1h" id="6nk-Tk-ryW"/>
                                     <outlet property="synopsisLabel" destination="0Rr-Xw-XgG" id="Cta-pk-UGl"/>
+                                    <segue destination="YxX-B9-23m" kind="push" identifier="DetailViewControllerSegue" id="E4A-l1-0ph"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -80,6 +81,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dd6-5m-huK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="965" y="218"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="Fr3-pC-Qhe">
+            <objects>
+                <viewController id="YxX-B9-23m" customClass="DetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V0V-Fj-QXA"/>
+                        <viewControllerLayoutGuide type="bottom" id="sVz-Eu-n0g"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XvD-Fe-d3j">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dsu-4t-f4q">
+                                <rect key="frame" x="20" y="20" width="280" height="207"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Summary" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30i-1U-GiS">
+                                <rect key="frame" x="20" y="235" width="74" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Vaf-ZL-g2T">
+                                <rect key="frame" x="20" y="264" width="280" height="164"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Percy Jackson, the son of Poseidon, continues his epic journey to fulfill his destiny, as he teams with his demigod friends to retrieve the Golden Fleece, which has the power to save their home and training ground, Camp Half-Blood.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cast" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bf4-Fb-BKy">
+                                <rect key="frame" x="20" y="436" width="36" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jake Abel,Nathan Fillion,Brandon T. Jackson" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="I4d-dO-Hl6">
+                                <rect key="frame" x="20" y="465" width="280" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="N93-zQ-71o"/>
+                    <connections>
+                        <outlet property="castLabel" destination="I4d-dO-Hl6" id="bSm-zI-lEA"/>
+                        <outlet property="synopsisLabel" destination="Vaf-ZL-g2T" id="LsK-lm-Xff"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HcR-Li-ZuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1377" y="218"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

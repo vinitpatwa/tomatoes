@@ -8,12 +8,15 @@
 
 #import "MoviesViewController.h"
 #import "MovieCell.h"
+#import "DetailViewController.h"
 
 @interface MoviesViewController ()
 
 @property (nonatomic, strong) NSArray *movies;
 
 - (void)reload;
+
+- (void)prepareForSegue;
 
 
 @end
@@ -81,6 +84,17 @@
 }
 
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    [self performSegueWithIdentifier:@"DetailViewControllerSegue" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier] isEqualToString:@"DetailViewControllerSegue"]){
+        DetailViewController *cvc = (DetailViewController *)[segue destinationViewController];
+        [cvc setSynopsisLabelText:@"My Name"];
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
