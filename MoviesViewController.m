@@ -62,6 +62,7 @@
 
 - (void)reload {
     // 1
+      NSLog(@"In reload");
     NSString *strUrl = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=j26mp33uc2p8ds9cdkfp64tg";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -84,6 +85,8 @@
         [av show];
         
     }];
+    
+    
     
     
 }
@@ -137,6 +140,36 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    
+    
+    
+    [refresh addTarget:self action:@selector(refreshList)
+     
+      forControlEvents:UIControlEventValueChanged];
+    
+    
+    
+    self.refreshControl = refresh;
+    
+    
+    
+//    testNumbers = [[NSMutableArray alloc] init];
+//    
+//    [self crunchNumbers];
+}
+
+- (void)refreshList
+{
+    NSLog(@"calling reload");
+    [self reload];
+    NSLog(@"reload done");
+    [self.refreshControl performSelector:@selector(endRefreshing)];
+        NSLog(@"finishing refreshlist");
+    //    [self performSegueWithIdentifier:@"DetailViewControllerSegue" sender:self];
 }
 
 
