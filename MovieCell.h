@@ -13,6 +13,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *synopsisLabel;
 @property (nonatomic, weak) IBOutlet UILabel *castLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *poster;
+@property (nonatomic, weak) NSString *posterUrl;
 
 
 @end

@@ -11,6 +11,7 @@
 #import "DetailViewController.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
+#import "Movie.h"
 
 @interface MoviesViewController ()
 
@@ -53,23 +54,19 @@
         self.movies = [object objectForKey:@"movies"];
         
         [self.tableView reloadData];
-
+        
     }];
-
+    
     
 }
 
 - (void)reload {
     // 1
     NSString *strUrl = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=j26mp33uc2p8ds9cdkfp64tg";
-//    NSURL *url = [NSURL URLWithString:strUrl];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:strUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-//        NSDictionary *object = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
         
         self.movies = [responseObject objectForKey:@"movies"];
         
@@ -85,7 +82,7 @@
                                                     delegate:nil
                                            cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [av show];
-    
+        
     }];
     
     
@@ -102,18 +99,32 @@
     
     
     NSDictionary *movie = self.movies[indexPath.row];
+    Movie *mov = [Movie alloc];
+    mov = [mov initWithDictionary:movie];
     
-    
-    cell.moviesTitleLabel.text = [movie objectForKey:@"title"];
-    cell.synopsisLabel.text = [movie objectForKey:@"synopsis"];
+    cell.moviesTitleLabel.text = mov->title;
+    cell.synopsisLabel.text = mov->synopsis;
     cell.castLabel.text = @"My Movie Cast ";
     
-    NSDictionary *poster = [movie objectForKey:@"posters"];
+//    NSDictionary *poster = [movie objectForKey:@"posters"];
     
-    NSString *imageURL = [poster objectForKey:@"profile"];
-   NSLog(@"thumbnail: %@", imageURL);
+    cell.posterUrl = mov->profilePoster;
+    NSLog(@"thumbnail: %@", cell.posterUrl);
     
-    [cell.poster setImageWithURL:[NSURL URLWithString:imageURL]];
+    [cell.poster setImageWithURL:[NSURL URLWithString:cell.posterUrl]];
+
+
+    
+//    cell.moviesTitleLabel.text = [movie objectForKey:@"title"];
+//    cell.synopsisLabel.text = [movie objectForKey:@"synopsis"];
+//    cell.castLabel.text = @"My Movie Cast ";
+//    
+//    NSDictionary *poster = [movie objectForKey:@"posters"];
+//    
+//    NSString *imageURL = [poster objectForKey:@"profile"];
+//    NSLog(@"thumbnail: %@", imageURL);
+//    
+//    [cell.poster setImageWithURL:[NSURL URLWithString:imageURL]];
     
     return cell;
 }
@@ -127,13 +138,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [self performSegueWithIdentifier:@"DetailViewControllerSegue" sender:self];
+    //    [self performSegueWithIdentifier:@"DetailViewControllerSegue" sender:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"DetailViewControllerSegue"]){
         DetailViewController *cvc = (DetailViewController *)[segue destinationViewController];
-        [cvc setSynopsisLabelText:@"My Name"];
+        MovieCell *curCell = sender;
+        cvc.movie = [[Movie alloc] initWithTitle:curCell.moviesTitleLabel.text synopsis:curCell.synopsisLabel.text profilePoster:curCell.posterUrl];
+
     }
 }
 

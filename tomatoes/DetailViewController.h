@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
 
 @interface DetailViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UILabel *moviesTitleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *synopsisLabel;
 @property (nonatomic, weak) IBOutlet UILabel *castLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *poster;
 @property (nonatomic, strong) NSString *str;
 
--(void)setSynopsisLabelText:(NSString *) text;
+@property (nonatomic, strong) Movie *movie;
+
 
 
 

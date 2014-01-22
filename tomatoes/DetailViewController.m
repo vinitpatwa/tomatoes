@@ -7,6 +7,9 @@
 //
 
 #import "DetailViewController.h"
+#import "AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
+
 
 @interface DetailViewController ()
 
@@ -26,25 +29,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        NSLog(@"some %@",self.castLabel.text);
+    
 	// Do any additional setup after loading the view.
+    self.castLabel.text = self.str;
+    self.moviesTitleLabel.text = self.movie->title;
+    self.synopsisLabel.text = self.movie->synopsis;
+    
+    [self.poster setImageWithURL:[NSURL URLWithString:self.movie->profilePoster]];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
--(void)setSynopsisLabelText:(NSString *) text
-{
-    NSLog(@"Got Synopsis %@", text);
-    NSLog(self.castLabel.superclass);
-    self.castLabel.text = @"MY CAST";
-    self.synopsisLabel.text = @"SOme";
-    NSLog(@"Got Synopsis %@", text);
-    
-    
 }
 
 
