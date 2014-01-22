@@ -99,12 +99,16 @@
     
     
     NSDictionary *movie = self.movies[indexPath.row];
+    
+    
+    
     Movie *mov = [Movie alloc];
     mov = [mov initWithDictionary:movie];
     
     cell.moviesTitleLabel.text = mov->title;
     cell.synopsisLabel.text = mov->synopsis;
-    cell.castLabel.text = @"My Movie Cast ";
+    cell.castLabel.text = mov->cast;
+    
     
 //    NSDictionary *poster = [movie objectForKey:@"posters"];
     
@@ -145,7 +149,7 @@
     if([[segue identifier] isEqualToString:@"DetailViewControllerSegue"]){
         DetailViewController *cvc = (DetailViewController *)[segue destinationViewController];
         MovieCell *curCell = sender;
-        cvc.movie = [[Movie alloc] initWithTitle:curCell.moviesTitleLabel.text synopsis:curCell.synopsisLabel.text profilePoster:curCell.posterUrl];
+        cvc.movie = [[Movie alloc] initWithTitle:curCell.moviesTitleLabel.text synopsis:curCell.synopsisLabel.text profilePoster:curCell.posterUrl cast:curCell.castLabel.text];
 
     }
 }

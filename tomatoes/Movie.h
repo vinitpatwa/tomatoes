@@ -17,13 +17,13 @@
 //    NSString *detailedPoster;
     NSString *title;
     NSString *synopsis;
-//    NSString *cast;
+    NSString *cast;
     
 }
 
 -(id)initWithDictionary: (NSDictionary *)dict;
 
--(id)initWithTitle:(NSString *)movTitle synopsis:(NSString *)movSynopsis profilePoster:(NSString *)movProfilePoster;
+-(id)initWithTitle:(NSString *)movTitle synopsis:(NSString *)movSynopsis profilePoster:(NSString *)movProfilePoster cast:(NSString *)movCast;
 
 
 @end

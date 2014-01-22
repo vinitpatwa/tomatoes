@@ -35,7 +35,7 @@
     self.castLabel.text = self.str;
     self.moviesTitleLabel.text = self.movie->title;
     self.synopsisLabel.text = self.movie->synopsis;
-    
+    self.castLabel.text = self.movie->cast;
     [self.poster setImageWithURL:[NSURL URLWithString:self.movie->profilePoster]];
 }
 
