@@ -8,12 +8,17 @@ Features:
 3. User sees loading state while waiting for movies API. 
 4. User sees error message when there's a networking error.(u) 
 
+
 MOVIES LIST PAGE
+
 ![ScreenShot](/screenshots/rotten1.png)
 
 
+
 DETAILED MOVIE PAGE
+
 ![ScreenShot](/screenshots/rotten2.png)
+
 
 
 TBD:
