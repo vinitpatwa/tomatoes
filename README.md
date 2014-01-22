@@ -12,7 +12,7 @@ Features:
 
 
 
-![ScreenShot](/screenshots/rottenr2.png)
+![ScreenShot](/screenshots/rotten2.png)
 
 
 TBD:
