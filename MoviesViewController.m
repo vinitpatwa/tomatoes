@@ -110,21 +110,10 @@
     
     NSDictionary *poster = [movie objectForKey:@"posters"];
     
-    NSString *imageURL = [poster objectForKey:@"thumbnail"];
+    NSString *imageURL = [poster objectForKey:@"profile"];
    NSLog(@"thumbnail: %@", imageURL);
-
-//    [cell.poster setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:imageURL]]
-//                                      success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
-//                                       weakCell.imageView.image = image;
-//                                       
-//                                       //only required if no placeholder is set to force the imageview on the cell to be laid out to house the new image.
-//                                       //if(weakCell.imageView.frame.size.height==0 || weakCell.imageView.frame.size.width==0 ){
-//                                       [weakCell setNeedsLayout];
-//                                       //}
-//                                   }
-//                                   failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
-//                                       
-//                                   }];
+    
+    [cell.poster setImageWithURL:[NSURL URLWithString:imageURL]];
     
     return cell;
 }

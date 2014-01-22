@@ -7,6 +7,11 @@ Features:
 2. User can view movie details by tapping on a cell
 3. User sees loading state while waiting for movies API. 
 
+
+![ScreenShot](/screenshots/rotten1.png)
+
+
+
 TBD:
 
 User sees error message when there's a networking error. 
