@@ -24,6 +24,11 @@
 		1C62463A188DEF9200A5CA90 /* MoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C624639188DEF9200A5CA90 /* MoviesViewController.m */; };
 		1C62463D188EF05D00A5CA90 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C62463C188EF05D00A5CA90 /* MovieCell.m */; };
 		1C624640188F0DF600A5CA90 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C62463F188F0DF600A5CA90 /* DetailViewController.m */; };
+		1CE6DF731890A56400D012A6 /* bg-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CE6DF6F1890A56400D012A6 /* bg-yellow.png */; };
+		1CE6DF741890A56400D012A6 /* bg-yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CE6DF701890A56400D012A6 /* bg-yellow@2x.png */; };
+		1CE6DF751890A56400D012A6 /* YRDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE6DF721890A56400D012A6 /* YRDropdownView.m */; };
+		1CE6DF781890A88D00D012A6 /* dropdown-alert.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CE6DF761890A88D00D012A6 /* dropdown-alert.png */; };
+		1CE6DF791890A88D00D012A6 /* dropdown-alert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CE6DF771890A88D00D012A6 /* dropdown-alert@2x.png */; };
 		F55C05A531974D0BB7E78257 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9F53DB65444B159706DF2A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +70,12 @@
 		1C62463C188EF05D00A5CA90 /* MovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieCell.m; path = ../MovieCell.m; sourceTree = "<group>"; };
 		1C62463E188F0DF600A5CA90 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		1C62463F188F0DF600A5CA90 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		1CE6DF6F1890A56400D012A6 /* bg-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-yellow.png"; sourceTree = "<group>"; };
+		1CE6DF701890A56400D012A6 /* bg-yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-yellow@2x.png"; sourceTree = "<group>"; };
+		1CE6DF711890A56400D012A6 /* YRDropdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDropdownView.h; sourceTree = "<group>"; };
+		1CE6DF721890A56400D012A6 /* YRDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDropdownView.m; sourceTree = "<group>"; };
+		1CE6DF761890A88D00D012A6 /* dropdown-alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown-alert.png"; sourceTree = "<group>"; };
+		1CE6DF771890A88D00D012A6 /* dropdown-alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown-alert@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +138,9 @@
 		1C624609188797D600A5CA90 /* tomatoes */ = {
 			isa = PBXGroup;
 			children = (
+				1CE6DF761890A88D00D012A6 /* dropdown-alert.png */,
+				1CE6DF771890A88D00D012A6 /* dropdown-alert@2x.png */,
+				1CE6DF6E1890A56400D012A6 /* YRDropdownView */,
 				1C62463E188F0DF600A5CA90 /* DetailViewController.h */,
 				1C62463F188F0DF600A5CA90 /* DetailViewController.m */,
 				1C62463B188EF05D00A5CA90 /* MovieCell.h */,
@@ -171,6 +185,17 @@
 				1C62462B188797D600A5CA90 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1CE6DF6E1890A56400D012A6 /* YRDropdownView */ = {
+			isa = PBXGroup;
+			children = (
+				1CE6DF6F1890A56400D012A6 /* bg-yellow.png */,
+				1CE6DF701890A56400D012A6 /* bg-yellow@2x.png */,
+				1CE6DF711890A56400D012A6 /* YRDropdownView.h */,
+				1CE6DF721890A56400D012A6 /* YRDropdownView.m */,
+			);
+			path = YRDropdownView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,8 +276,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CE6DF741890A56400D012A6 /* bg-yellow@2x.png in Resources */,
+				1CE6DF781890A88D00D012A6 /* dropdown-alert.png in Resources */,
 				1C62461C188797D600A5CA90 /* Images.xcassets in Resources */,
 				1C62460E188797D600A5CA90 /* InfoPlist.strings in Resources */,
+				1CE6DF731890A56400D012A6 /* bg-yellow.png in Resources */,
+				1CE6DF791890A88D00D012A6 /* dropdown-alert@2x.png in Resources */,
 				1C624617188797D600A5CA90 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CE6DF751890A56400D012A6 /* YRDropdownView.m in Sources */,
 				1C57EE1C188FB98B0099B9C9 /* Movie.m in Sources */,
 				1C624614188797D600A5CA90 /* AppDelegate.m in Sources */,
 				1C624640188F0DF600A5CA90 /* DetailViewController.m in Sources */,

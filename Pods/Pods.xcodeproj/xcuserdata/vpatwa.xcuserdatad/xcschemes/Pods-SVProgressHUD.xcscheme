@@ -14,10 +14,10 @@
             buildForRunning = "YES">
             <BuildableReference
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libPods-AFNetworking.a"
+               BuildableName = "libPods-SVProgressHUD.a"
                BuildableIdentifier = "primary"
-               BlueprintName = "Pods-AFNetworking"
-               BlueprintIdentifier = "2245C46A5E194719A61108AD">
+               BlueprintName = "Pods-SVProgressHUD"
+               BlueprintIdentifier = "B27F842E74E0466093AB26E4">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

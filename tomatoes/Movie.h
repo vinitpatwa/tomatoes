@@ -11,10 +11,8 @@
 @interface Movie : NSObject
 
 {
-
     @public
     NSString *profilePoster;
-//    NSString *detailedPoster;
     NSString *title;
     NSString *synopsis;
     NSString *cast;

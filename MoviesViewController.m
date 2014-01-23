@@ -12,6 +12,8 @@
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
 #import "Movie.h"
+#import "SVProgressHUD.h"
+#import "YRDropdownView.h"
 
 @interface MoviesViewController ()
 
@@ -43,52 +45,57 @@
     return self;
 }
 
-- (void) reload1{
-    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=j26mp33uc2p8ds9cdkfp64tg";
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        NSLog(@"JSON: %@", data);
-        NSDictionary *object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        NSLog(@"data: %@", object);
-        
-        self.movies = [object objectForKey:@"movies"];
-        
-        [self.tableView reloadData];
-        
-    }];
-    
-    
-}
+
 
 - (void)reload {
-    // 1
-      NSLog(@"In reload");
-    NSString *strUrl = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=j26mp33uc2p8ds9cdkfp64tg";
+    NSLog(@"In reload");
+    [SVProgressHUD showWithStatus:@"Updating" maskType:SVProgressHUDMaskTypeBlack];    
+    // 2) Get a concurrent queue form the system
+    dispatch_queue_t concurrentQueue =
+    dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:strUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    // 3) Call data from rotten APIs in background
+    dispatch_async(concurrentQueue, ^{
+//        [NSThread sleepForTimeInterval:10.0];
         
+        NSString *strUrl = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=j26mp33uc2p8ds9cdkfp64tg";
         
-        self.movies = [responseObject objectForKey:@"movies"];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager GET:strUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            self.movies = [responseObject objectForKey:@"movies"];
+            [self.tableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+            });
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+
+//            [YRDropdownView showDropdownInView:self.view
+//                                         title:@"Error Retrieving Titles"
+//                                        detail:@"No Internet Connection."];
+            
+//            [YRDropdownView showDropdownInView:self.view
+//                                         title:@"Warning"
+//                                        detail:@"Me too! I want to try a really long detail message to see how it handles the line breaks and what not. Here's to hoping it works right the first time!"
+//                                         image:[UIImage imageNamed:@"bg-yellow"]
+//                                      animated:YES
+//                                     hideAfter:5];
+            
+//                        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Titles"
+//                                                         message:[NSString stringWithFormat:@"No Internet Connection"]
+//                                                        delegate:nil
+//                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [av show];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                NSLog(@"#############");
+                [SVProgressHUD dismiss];
+            });
+            
+        }];
         
-        [self.tableView reloadData];
-        
-        
-        NSLog(@"JSON: %@", responseObject);
-        NSLog(@"#############");
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Titles"
-                                                     message:[NSString stringWithFormat:@"No Internet Connection"]
-                                                    delegate:nil
-                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [av show];
-        
-    }];
-    
-    
-    
-    
+    });
 }
 
 
@@ -98,84 +105,37 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
-    
-    
-    
     NSDictionary *movie = self.movies[indexPath.row];
-    
-    
-    
     Movie *mov = [Movie alloc];
     mov = [mov initWithDictionary:movie];
-    
     cell.moviesTitleLabel.text = mov->title;
     cell.synopsisLabel.text = mov->synopsis;
     cell.castLabel.text = mov->cast;
-    
-    
-//    NSDictionary *poster = [movie objectForKey:@"posters"];
-    
     cell.posterUrl = mov->profilePoster;
-    NSLog(@"thumbnail: %@", cell.posterUrl);
-    
     [cell.poster setImageWithURL:[NSURL URLWithString:cell.posterUrl]];
-
-
-    
-//    cell.moviesTitleLabel.text = [movie objectForKey:@"title"];
-//    cell.synopsisLabel.text = [movie objectForKey:@"synopsis"];
-//    cell.castLabel.text = @"My Movie Cast ";
-//    
-//    NSDictionary *poster = [movie objectForKey:@"posters"];
-//    
-//    NSString *imageURL = [poster objectForKey:@"profile"];
-//    NSLog(@"thumbnail: %@", imageURL);
-//    
-//    [cell.poster setImageWithURL:[NSURL URLWithString:imageURL]];
-    
     return cell;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
-    
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
-    
-    
-    
     [refresh addTarget:self action:@selector(refreshList)
-     
       forControlEvents:UIControlEventValueChanged];
-    
-    
-    
     self.refreshControl = refresh;
-    
-    
-    
-//    testNumbers = [[NSMutableArray alloc] init];
-//    
-//    [self crunchNumbers];
 }
 
 - (void)refreshList
 {
-    NSLog(@"calling reload");
     [self reload];
-    NSLog(@"reload done");
     [self.refreshControl performSelector:@selector(endRefreshing)];
-        NSLog(@"finishing refreshlist");
-    //    [self performSegueWithIdentifier:@"DetailViewControllerSegue" sender:self];
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    [self performSegueWithIdentifier:@"DetailViewControllerSegue" sender:self];
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -183,14 +143,13 @@
         DetailViewController *cvc = (DetailViewController *)[segue destinationViewController];
         MovieCell *curCell = sender;
         cvc.movie = [[Movie alloc] initWithTitle:curCell.moviesTitleLabel.text synopsis:curCell.synopsisLabel.text profilePoster:curCell.posterUrl cast:curCell.castLabel.text];
-
+        
     }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
