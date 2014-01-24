@@ -49,15 +49,15 @@
 
 - (void)reload {
     NSLog(@"In reload");
-    [SVProgressHUD showWithStatus:@"Updating" maskType:SVProgressHUDMaskTypeBlack];    
+    [SVProgressHUD showWithStatus:@"Updating" maskType:SVProgressHUDMaskTypeBlack];
     // 2) Get a concurrent queue form the system
     dispatch_queue_t concurrentQueue =
     dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
     // 3) Call data from rotten APIs in background
     dispatch_async(concurrentQueue, ^{
-//        [NSThread sleepForTimeInterval:10.0];
-        
+        //[NSThread sleepForTimeInterval:10.0];
+        NSLog(@"I M in SOmewhere");
         NSString *strUrl = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=j26mp33uc2p8ds9cdkfp64tg";
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -70,23 +70,11 @@
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
-
-//            [YRDropdownView showDropdownInView:self.view
-//                                         title:@"Error Retrieving Titles"
-//                                        detail:@"No Internet Connection."];
             
-//            [YRDropdownView showDropdownInView:self.view
-//                                         title:@"Warning"
-//                                        detail:@"Me too! I want to try a really long detail message to see how it handles the line breaks and what not. Here's to hoping it works right the first time!"
-//                                         image:[UIImage imageNamed:@"bg-yellow"]
-//                                      animated:YES
-//                                     hideAfter:5];
+            [YRDropdownView showDropdownInView:self.view
+                                         title:@"Error Retrieving Titles"
+                                        detail:@"No Internet Connection."];
             
-//                        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Titles"
-//                                                         message:[NSString stringWithFormat:@"No Internet Connection"]
-//                                                        delegate:nil
-//                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            [av show];
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 NSLog(@"#############");
